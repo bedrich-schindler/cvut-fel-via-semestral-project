@@ -1,37 +1,8 @@
-## Welcome to GitHub Pages
+# Semestrální projekt – VIA – FEL ČVUT
 
-You can use the [editor on GitHub](https://github.com/bedrich-schindler/cvut-fel-via-semestral-project/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+# Zadání
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Bude se jednat o jednoduchou webovou aplikaci představující veřejnou databázi střelnic. Uživatel při přístupu na stránku uvidí seznam střelnic jak formou listu, tak na mapu se špedlíky představující jednotlivé střelnice. Po kliknutí na střelnici se zobrazí detail se základními informacemi (jako je adresa, kontakt, web, ceník, popis střelnice), dále hodnocení ostatních uživatelů a informace ze služby Foursquare. Každý uživatel má možnost vytvořit novou střelnici nebo již existující střelnici editovat.
 
-### Markdown
+Vlastní API bude udržovat informace o střelnicích, dále bude využito Google Maps API pro práci s mapovými podklady a Foursquare API pro získávání dat o místech z databáze míst Foursquare.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/bedrich-schindler/cvut-fel-via-semestral-project/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
