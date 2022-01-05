@@ -6,7 +6,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import { RUIProvider } from './components/RUIProvider';
-import { IndexPage } from './pages/index';
+import { ListPage } from './pages/list';
+import { MapPage } from './pages/map';
 import routes from './routes';
 
 export default (store, history) => (
@@ -16,9 +17,15 @@ export default (store, history) => (
         <Switch>
           <Route
             // eslint-disable-next-line react/no-children-prop
-            children={(routerProps) => <IndexPage {...routerProps} />}
+            children={(routerProps) => <MapPage {...routerProps} />}
             exact
-            path={routes.index}
+            path={routes.map}
+          />
+          <Route
+            // eslint-disable-next-line react/no-children-prop
+            children={(routerProps) => <ListPage {...routerProps} />}
+            exact
+            path={routes.list}
           />
         </Switch>
       </RUIProvider>

@@ -10,7 +10,8 @@
         "src/constants/*",
         "src/resources/*/*",
         "**/resources/*/actions/*",
-        "src/service/**/*"
+        "src/services/**/*",
+        "src/validators/**/*"
       ],
       "rules": {
         "import/prefer-default-export": "off"

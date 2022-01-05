@@ -1,3 +1,4 @@
 export default {
-  index: '/',
+  list: '/list',
+  map: '/',
 };
