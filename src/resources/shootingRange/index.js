@@ -6,6 +6,8 @@ export {
   shootingRangeGetAll,
 } from './actions';
 
+export { ShootingRangePropType } from './propTypes';
+
 export {
   selectShootingRange,
   selectShootingRangeAddRequestState,

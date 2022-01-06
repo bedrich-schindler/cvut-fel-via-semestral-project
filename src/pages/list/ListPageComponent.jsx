@@ -10,12 +10,15 @@ import {
 } from '@react-ui-org/react-ui';
 import { Layout } from '../../components/Layout';
 import { ShootingRangeDeleteModal } from '../../components/ShootingRangeDeleteModal';
+import { ShootingRangeDetailModal } from '../../components/ShootingRangeDetailModal';
 import { ShootingRangeEditModal } from '../../components/ShootingRangeEditModal';
+import { ShootingRangePropType } from '../../resources/shootingRange';
 
 const ListPageComponent = ({
   shootingRanges,
 }) => {
   const [shootingRangeDeleteId, setShootingRangeDeleteId] = useState(null);
+  const [shootingRangeDetailId, setShootingRangeDetailId] = useState(null);
   const [shootingRangeEditId, setShootingRangeEditId] = useState(null);
 
   return (
@@ -32,8 +35,17 @@ const ListPageComponent = ({
               name: 'name',
             },
             {
+              format: (row) => `${row.street}, ${row.city}`,
+              label: 'Address',
+              name: 'address',
+            },
+            {
               format: (row) => (
                 <ButtonGroup size="small">
+                  <Button
+                    label="Detail"
+                    onClick={() => setShootingRangeDetailId(row.id)}
+                  />
                   <Button
                     label="Edit"
                     onClick={() => setShootingRangeEditId(row.id)}
@@ -52,24 +64,34 @@ const ListPageComponent = ({
           rows={shootingRanges}
         />
       </ScrollView>
-      {shootingRangeEditId !== null && (
-        <ShootingRangeEditModal
-          id={shootingRangeEditId}
-          onClose={() => setShootingRangeEditId(null)}
-        />
-      )}
       {shootingRangeDeleteId !== null && (
         <ShootingRangeDeleteModal
           id={shootingRangeDeleteId}
           onClose={() => setShootingRangeDeleteId(null)}
         />
       )}
+      {shootingRangeDetailId !== null && (
+        <ShootingRangeDetailModal
+          id={shootingRangeDetailId}
+          onClose={() => setShootingRangeDetailId(null)}
+        />
+      )}
+      {shootingRangeEditId !== null && (
+        <ShootingRangeEditModal
+          id={shootingRangeEditId}
+          onClose={() => setShootingRangeEditId(null)}
+        />
+      )}
     </Layout>
   );
 };
 
+ListPageComponent.defaultProps = {
+  shootingRanges: null,
+};
+
 ListPageComponent.propTypes = {
-  shootingRanges: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  shootingRanges: PropTypes.arrayOf(ShootingRangePropType),
 };
 
 export default ListPageComponent;

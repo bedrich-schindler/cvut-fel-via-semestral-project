@@ -1,13 +1,25 @@
 export const validateShootingRange = (data) => {
   const formValidity = {
     elements: {
+      about: null,
+      city: null,
+      foursquare_place_id: null,
+      latitude: null,
+      longitude: null,
       name: null,
+      phone: null,
+      street: null,
+      web: null,
     },
     isValid: true,
   };
 
   const emptyCheck = [
+    'city',
+    'latitude',
+    'longitude',
     'name',
+    'street',
   ];
 
   emptyCheck.forEach((element) => {
@@ -16,11 +28,6 @@ export const validateShootingRange = (data) => {
       formValidity.isValid = false;
     }
   });
-
-  if (formValidity.elements.name === null && data.name.length < 2) {
-    formValidity.elements.name = 'Must be at least 2 characters long';
-    formValidity.isValid = false;
-  }
 
   return formValidity;
 };

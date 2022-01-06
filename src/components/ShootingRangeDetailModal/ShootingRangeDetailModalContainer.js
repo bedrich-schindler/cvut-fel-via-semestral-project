@@ -1,26 +1,22 @@
 import { connect } from 'react-redux';
 import {
-  foursquareSearchPlaces,
-  selectFoursquarePlaces,
+  foursquareGetPlace,
+  selectFoursquarePlace,
 } from '../../resources/foursquare';
 import {
   selectShootingRange,
-  shootingRangeEdit,
   shootingRangeGet,
-  shootingRangeGetAll,
 } from '../../resources/shootingRange';
-import Component from './ShootingRangeEditModalComponent';
+import Component from './ShootingRangeDetailModalComponent';
 
 const mapStateToProps = (state) => ({
-  foursquarePlaces: selectFoursquarePlaces(state),
+  foursquarePlace: selectFoursquarePlace(state),
   shootingRange: selectShootingRange(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  foursquareSearchPlaces: (data) => dispatch(foursquareSearchPlaces(data)),
-  shootingRangeEdit: (id, data) => dispatch(shootingRangeEdit(id, data)),
+  foursquareGetPlace: (fsqId) => dispatch(foursquareGetPlace(fsqId)),
   shootingRangeGet: (id) => dispatch(shootingRangeGet(id)),
-  shootingRangeGetAll: () => dispatch(shootingRangeGetAll()),
 });
 
 export default connect(

@@ -24,7 +24,7 @@ const LayoutComponent = ({
     if (shootingRanges === null) {
       shootingRangeGetAll();
     }
-  }, []);
+  }, [shootingRanges, shootingRangeGetAll]);
   const [isShootingRangeDialogOpened, setIsShootingRangeDialogOpened] = useState(false);
 
   const history = useHistory();
