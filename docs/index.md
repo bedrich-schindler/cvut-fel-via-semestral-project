@@ -8,5 +8,5 @@ Vlastní API bude udržovat informace o střelnicích, dále bude využito OpenS
 
 # Odkazy
 
-* Webová aplikace: http://cvut-fel-via-schinbed.surge.sh/
-* Webové API: https://schinbed.pythonanywhere.com
+* Webová aplikace: [http://cvut-fel-via-schinbed.surge.sh/](http://cvut-fel-via-schinbed.surge.sh/)
+* Webové API: [https://schinbed.pythonanywhere.com](https://schinbed.pythonanywhere.com)
