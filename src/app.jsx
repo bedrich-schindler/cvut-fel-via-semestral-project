@@ -6,6 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { RUIProvider } from './components/RUIProvider';
+import { AboutPage } from './pages/about';
 import { ListPage } from './pages/list';
 import { MapPage } from './pages/map';
 import routes from './routes';
@@ -26,6 +27,12 @@ export default (store, history) => (
             children={(routerProps) => <ListPage {...routerProps} />}
             exact
             path={routes.list}
+          />
+          <Route
+            // eslint-disable-next-line react/no-children-prop
+            children={(routerProps) => <AboutPage {...routerProps} />}
+            exact
+            path={routes.about}
           />
         </Switch>
       </RUIProvider>

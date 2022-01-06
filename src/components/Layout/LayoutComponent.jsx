@@ -66,6 +66,14 @@ const LayoutComponent = ({
                 history.push(routes.list);
               }}
             />
+            <TabsItem
+              isActive={history.location.pathname === routes.about}
+              label="About"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push(routes.about);
+              }}
+            />
           </Tabs>
           <div className={styles.tabContent}>
             {children}

@@ -10,6 +10,7 @@ npm run build
 
 echo "> Deploying web application"
 cd ./public/
+cp ./index.html ./200.html
 surge . cvut-fel-via-schinbed.surge.sh
 
 echo ""
