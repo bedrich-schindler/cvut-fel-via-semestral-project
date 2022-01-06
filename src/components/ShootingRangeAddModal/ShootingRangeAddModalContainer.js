@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import {
-  shootingRangeAdd,
-  shootingRangeGetAll,
-} from '../../resources/shootingRange';
-import {
   foursquareSearchPlaces,
   selectFoursquarePlaces,
 } from '../../resources/foursquare';
+import {
+  openStreetMapsGetDetail,
+} from '../../resources/openStreetMaps';
+import {
+  shootingRangeAdd,
+  shootingRangeGetAll,
+} from '../../resources/shootingRange';
 import Component from './ShootingRangeAddModalComponent';
 
 const mapStateToProps = (state) => ({
@@ -15,6 +18,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   foursquareSearchPlaces: (data) => dispatch(foursquareSearchPlaces(data)),
+  openStreetMapsGetDetail: (data) => dispatch(openStreetMapsGetDetail(data)),
   shootingRangeAdd: (data) => dispatch(shootingRangeAdd(data)),
   shootingRangeGetAll: () => dispatch(shootingRangeGetAll()),
 });

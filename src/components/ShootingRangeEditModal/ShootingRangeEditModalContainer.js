@@ -3,6 +3,7 @@ import {
   foursquareSearchPlaces,
   selectFoursquarePlaces,
 } from '../../resources/foursquare';
+import { openStreetMapsGetDetail } from '../../resources/openStreetMaps';
 import {
   selectShootingRange,
   shootingRangeEdit,
@@ -18,6 +19,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   foursquareSearchPlaces: (data) => dispatch(foursquareSearchPlaces(data)),
+  openStreetMapsGetDetail: (data) => dispatch(openStreetMapsGetDetail(data)),
   shootingRangeEdit: (id, data) => dispatch(shootingRangeEdit(id, data)),
   shootingRangeGet: (id) => dispatch(shootingRangeGet(id)),
   shootingRangeGetAll: () => dispatch(shootingRangeGetAll()),

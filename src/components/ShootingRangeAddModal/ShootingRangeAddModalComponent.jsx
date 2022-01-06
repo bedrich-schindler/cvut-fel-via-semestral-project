@@ -18,6 +18,7 @@ const ShootingRangeAddModalComponent = ({
   foursquarePlaces,
   foursquareSearchPlaces,
   onClose,
+  openStreetMapsGetDetail,
   shootingRangeAdd,
   shootingRangeGetAll,
 }) => {
@@ -73,6 +74,22 @@ const ShootingRangeAddModalComponent = ({
       name: formData.name,
       place: formData.city,
     });
+  };
+  const onGuessGps = async () => {
+    if (formData.street?.length > 0 && formData.city?.length) {
+      const response = await openStreetMapsGetDetail({
+        city: formData.city,
+        street: formData.street,
+      });
+
+      if (response.type.endsWith('success') && response.payload?.length > 0) {
+        setFormData({
+          ...formData,
+          latitude: response.payload[0].lat,
+          longitude: response.payload[0].lon,
+        });
+      }
+    }
   };
   const onFillClick = () => {
     if (foursquarePlaces?.results == null || foursquarePlaces?.results?.length === 0) {
@@ -182,6 +199,12 @@ const ShootingRangeAddModalComponent = ({
               validationState={formValidity.elements.longitude !== null ? 'invalid' : null}
               validationText={formValidity.elements.longitude}
             />
+            <Button
+              block
+              disabled={formData.street?.length === 0 || formData.city?.length === 0}
+              label="Guess coordinates"
+              onClick={onGuessGps}
+            />
             <SelectField
               fullWidth
               disabled={foursquarePlaces == null || foursquarePlaces.length === 0}
@@ -240,7 +263,7 @@ const ShootingRangeAddModalComponent = ({
               onChange={(e) => setFormData({
                 ...formData, about: e.target.value,
               })}
-              rows={11}
+              rows={13}
               size="small"
               value={formData.about}
               validationState={formValidity.elements.about !== null ? 'invalid' : null}
@@ -267,6 +290,7 @@ ShootingRangeAddModalComponent.propTypes = {
   foursquarePlaces: FoursquarePlacesPropType,
   foursquareSearchPlaces: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
+  openStreetMapsGetDetail: PropTypes.func.isRequired,
   shootingRangeAdd: PropTypes.func.isRequired,
   shootingRangeGetAll: PropTypes.func.isRequired,
 };
