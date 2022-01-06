@@ -16,15 +16,19 @@ import {
 import { FoursquarePlacesPropType } from '../../resources/foursquare';
 import { getFoursquarePlacesOptions } from '../../services/foursquarePlacesService/getFoursquarePlacesOptions';
 import { validateShootingRange } from '../../validators/validateShootingRange';
+import { LoadingIcon } from '../LoadingIcon';
 
 const ShootingRangeEditModalComponent = ({
   foursquarePlaces,
   foursquareSearchPlaces,
+  foursquareSearchPlacesRequestState,
   id,
   onClose,
   openStreetMapsGetDetail,
   shootingRangeEdit,
+  shootingRangeEditRequestState,
   shootingRangeGet,
+  shootingRangeGetRequestState,
   shootingRangeGetAll,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -150,7 +154,8 @@ const ShootingRangeEditModalComponent = ({
       actions={[
         {
           color: 'primary',
-          disabled: isGetFailed,
+          disabled: isGetFailed || shootingRangeGetRequestState === 'request',
+          feedbackIcon: shootingRangeEditRequestState === 'request' && <LoadingIcon />,
           label: 'Save',
           onClick,
         },
@@ -160,18 +165,25 @@ const ShootingRangeEditModalComponent = ({
       title="Edit shooting range"
     >
       {isGetFailed && (
-        <Alert color="danger">
-          <strong>Error:</strong>
-          {' '}
-          Unable to get shooting range due to server error.
-        </Alert>
+        <div className="mb-5">
+          <Alert color="danger">
+            <strong>Error:</strong>
+            {' '}
+            Unable to get shooting range due to server error.
+          </Alert>
+        </div>
       )}
       {isEditFailed && (
-        <Alert color="danger">
-          <strong>Error:</strong>
-          {' '}
-          Unable to edit shooting range due to server error.
-        </Alert>
+        <div className="mb-5">
+          <Alert color="danger">
+            <strong>Error:</strong>
+            {' '}
+            Unable to edit shooting range due to server error.
+          </Alert>
+        </div>
+      )}
+      {shootingRangeGetRequestState === 'request' && (
+        <LoadingIcon />
       )}
       {(isLoaded && !isGetFailed) && (
         <Grid
@@ -272,6 +284,7 @@ const ShootingRangeEditModalComponent = ({
               <Button
                 block
                 disabled={formData.name?.length === 0 || formData.city?.length === 0}
+                feedbackIcon={foursquareSearchPlacesRequestState === 'request' && <LoadingIcon />}
                 label="Search on Foursquare"
                 onClick={onSearchClick}
               />
@@ -329,17 +342,23 @@ const ShootingRangeEditModalComponent = ({
 
 ShootingRangeEditModalComponent.defaultProps = {
   foursquarePlaces: null,
+  foursquareSearchPlacesRequestState: null,
+  shootingRangeEditRequestState: null,
+  shootingRangeGetRequestState: null,
 };
 
 ShootingRangeEditModalComponent.propTypes = {
   foursquarePlaces: FoursquarePlacesPropType,
   foursquareSearchPlaces: PropTypes.func.isRequired,
+  foursquareSearchPlacesRequestState: PropTypes.string,
   id: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
   openStreetMapsGetDetail: PropTypes.func.isRequired,
   shootingRangeEdit: PropTypes.func.isRequired,
+  shootingRangeEditRequestState: PropTypes.string,
   shootingRangeGet: PropTypes.func.isRequired,
   shootingRangeGetAll: PropTypes.func.isRequired,
+  shootingRangeGetRequestState: PropTypes.string,
 };
 
 export default ShootingRangeEditModalComponent;

@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 import {
   foursquareSearchPlaces,
   selectFoursquarePlaces,
+  selectFoursquareSearchPlacesRequestState,
 } from '../../resources/foursquare';
 import { openStreetMapsGetDetail } from '../../resources/openStreetMaps';
 import {
   selectShootingRange,
+  selectShootingRangeEditRequestState,
+  selectShootingRangeGetRequestState,
   shootingRangeEdit,
   shootingRangeGet,
   shootingRangeGetAll,
@@ -14,7 +17,10 @@ import Component from './ShootingRangeEditModalComponent';
 
 const mapStateToProps = (state) => ({
   foursquarePlaces: selectFoursquarePlaces(state),
+  foursquareSearchPlacesRequestState: selectFoursquareSearchPlacesRequestState(state),
   shootingRange: selectShootingRange(state),
+  shootingRangeEditRequestState: selectShootingRangeEditRequestState(state),
+  shootingRangeGetRequestState: selectShootingRangeGetRequestState(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,6 +10,7 @@ import {
   Tabs,
   TabsItem,
 } from '@react-ui-org/react-ui';
+import { LoadingIcon } from '../LoadingIcon';
 import { ShootingRangeAddModal } from '../ShootingRangeAddModal';
 import routes from '../../routes';
 import styles from './styles.scss';
@@ -41,9 +42,9 @@ const LayoutComponent = ({
           size="small"
         />
       </header>
-      {(shootingRangeGetAllRequestState == null || shootingRangeGetAllRequestState === 'pending') && (
+      {(shootingRangeGetAllRequestState == null || shootingRangeGetAllRequestState === 'request') && (
         <main className={styles.content}>
-          Loading...
+          <LoadingIcon />
         </main>
       )}
       {shootingRangeGetAllRequestState === 'success' && (

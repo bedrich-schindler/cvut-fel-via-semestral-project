@@ -50,6 +50,17 @@ module.exports = (env, argv) => ({
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              titleProp: true,
+            },
+          },
+        ],
+      },
     ],
   },
   output: {

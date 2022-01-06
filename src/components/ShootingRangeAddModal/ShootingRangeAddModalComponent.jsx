@@ -13,13 +13,16 @@ import {
 import { FoursquarePlacesPropType } from '../../resources/foursquare';
 import { getFoursquarePlacesOptions } from '../../services/foursquarePlacesService/getFoursquarePlacesOptions';
 import { validateShootingRange } from '../../validators/validateShootingRange';
+import { LoadingIcon } from '../LoadingIcon';
 
 const ShootingRangeAddModalComponent = ({
   foursquarePlaces,
   foursquareSearchPlaces,
+  foursquareSearchPlacesRequestState,
   onClose,
   openStreetMapsGetDetail,
   shootingRangeAdd,
+  shootingRangeAddRequestState,
   shootingRangeGetAll,
 }) => {
   const [isFailed, setIsFailed] = useState(false);
@@ -115,6 +118,7 @@ const ShootingRangeAddModalComponent = ({
       actions={[
         {
           color: 'primary',
+          feedbackIcon: shootingRangeAddRequestState === 'request' && <LoadingIcon />,
           label: 'Save',
           onClick,
         },
@@ -124,11 +128,13 @@ const ShootingRangeAddModalComponent = ({
       title="Add shooting range"
     >
       {isFailed && (
-        <Alert color="danger">
-          <strong>Error:</strong>
-          {' '}
-          Unable to add shooting range due to server error.
-        </Alert>
+        <div className="mb-5">
+          <Alert color="danger">
+            <strong>Error:</strong>
+            {' '}
+            Unable to add shooting range due to server error.
+          </Alert>
+        </div>
       )}
       <Grid
         columns={{
@@ -228,6 +234,7 @@ const ShootingRangeAddModalComponent = ({
             <Button
               block
               disabled={formData.name?.length === 0 || formData.city?.length === 0}
+              feedbackIcon={foursquareSearchPlacesRequestState === 'request' && <LoadingIcon />}
               label="Search on Foursquare"
               onClick={onSearchClick}
             />
@@ -284,14 +291,18 @@ const ShootingRangeAddModalComponent = ({
 
 ShootingRangeAddModalComponent.defaultProps = {
   foursquarePlaces: null,
+  foursquareSearchPlacesRequestState: null,
+  shootingRangeAddRequestState: null,
 };
 
 ShootingRangeAddModalComponent.propTypes = {
   foursquarePlaces: FoursquarePlacesPropType,
   foursquareSearchPlaces: PropTypes.func.isRequired,
+  foursquareSearchPlacesRequestState: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   openStreetMapsGetDetail: PropTypes.func.isRequired,
   shootingRangeAdd: PropTypes.func.isRequired,
+  shootingRangeAddRequestState: PropTypes.string,
   shootingRangeGetAll: PropTypes.func.isRequired,
 };
 

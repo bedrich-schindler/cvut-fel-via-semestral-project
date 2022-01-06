@@ -4,11 +4,13 @@ import {
   Alert,
   Modal,
 } from '@react-ui-org/react-ui';
+import { LoadingIcon } from '../LoadingIcon';
 
 const ShootingRangeDeleteModalComponent = ({
   id,
   onClose,
   shootingRangeDelete,
+  shootingRangeDeleteRequestState,
   shootingRangeGetAll,
 }) => {
   const [isFailed, setIsFailed] = useState(false);
@@ -33,6 +35,7 @@ const ShootingRangeDeleteModalComponent = ({
       actions={[
         {
           color: 'danger',
+          feedbackIcon: shootingRangeDeleteRequestState === 'request' && <LoadingIcon />,
           label: 'Delete',
           onClick,
         },
@@ -54,10 +57,15 @@ const ShootingRangeDeleteModalComponent = ({
   );
 };
 
+ShootingRangeDeleteModalComponent.defaultProps = {
+  shootingRangeDeleteRequestState: null,
+};
+
 ShootingRangeDeleteModalComponent.propTypes = {
   id: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
   shootingRangeDelete: PropTypes.func.isRequired,
+  shootingRangeDeleteRequestState: PropTypes.string,
   shootingRangeGetAll: PropTypes.func.isRequired,
 };
 

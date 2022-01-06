@@ -8,17 +8,20 @@ import {
   Grid,
   Modal,
 } from '@react-ui-org/react-ui';
+import { LoadingIcon } from '../LoadingIcon';
 import { FoursquarePlacePropType } from '../../resources/foursquare';
 import { ShootingRangePropType } from '../../resources/shootingRange';
 import styles from './styles.scss';
 
 const ShootingRangeDetailModalComponent = ({
   foursquareGetPlace,
+  foursquareGetPlaceRequestState,
   foursquarePlace,
   id,
   onClose,
   shootingRange,
   shootingRangeGet,
+  shootingRangeGetRequestState,
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isGetFailed, setIsGetFailed] = useState(false);
@@ -53,11 +56,14 @@ const ShootingRangeDetailModalComponent = ({
       title="Shooting range detail"
     >
       {isGetFailed && (
-        <Alert color="danger">
-          <strong>Error:</strong>
-          {' '}
-          Unable to get shooting range due to server error.
-        </Alert>
+      <Alert color="danger">
+        <strong>Error:</strong>
+        {' '}
+        Unable to get shooting range due to server error.
+      </Alert>
+      )}
+      {(shootingRangeGetRequestState === 'request' || foursquareGetPlaceRequestState === 'request') && (
+        <LoadingIcon />
       )}
       {(isLoaded && !isGetFailed) && (
         <div>
@@ -166,17 +172,21 @@ const ShootingRangeDetailModalComponent = ({
 };
 
 ShootingRangeDetailModalComponent.defaultProps = {
+  foursquareGetPlaceRequestState: null,
   foursquarePlace: null,
   shootingRange: null,
+  shootingRangeGetRequestState: null,
 };
 
 ShootingRangeDetailModalComponent.propTypes = {
   foursquareGetPlace: PropTypes.func.isRequired,
+  foursquareGetPlaceRequestState: PropTypes.string,
   foursquarePlace: FoursquarePlacePropType,
   id: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
   shootingRange: ShootingRangePropType,
   shootingRangeGet: PropTypes.func.isRequired,
+  shootingRangeGetRequestState: PropTypes.string,
 };
 
 export default ShootingRangeDetailModalComponent;
